@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('student_subjects', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('subject_id')->constrained('subjects')->onDelete('cascade');
+            $table->date('enrollment_date');
+            $table->enum('status', ['active', 'completed', 'dropped'])->default('active');
             $table->timestamps();
         });
     }
