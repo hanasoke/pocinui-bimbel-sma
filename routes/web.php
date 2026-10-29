@@ -17,4 +17,24 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::middleware(['auth'])->group(function () {
+    // Rute untuk Admin
+    Route::middleware(['role:admin'])->prefix('admin')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index']);
+        Route::resource('users', UserController::class);
+        Route::resource('subjects', SubjectController::class);
+    });
+
+    // Rute untuk Guru
+    Route::middleware(['role:teacher'])->prefix('teacher')->group(function () {
+        Route::get('/attendance', [AttendanceController::class, 'index']);
+        Route::post('/attendance/store', [AttendanceController::class, 'store']);
+    });
+
+    // Rute untuk Siswa
+    Route::middleware(['role:student'])->prefix('student')->group(function () {
+        Route::get('/my-classes', [ClassController::class, 'index']);
+    });
+});
+
 require __DIR__.'/auth.php';
