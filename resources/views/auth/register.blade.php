@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
 
         <!-- Name -->
@@ -82,6 +82,13 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
+        <!-- Foto Profil -->
+        <div class="mt-4">
+            <x-input-label for="photo" :value="__('Foto Profil (Opsional)')"/>
+            <input id="photo" class="block mt-1 w-full text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" type="file" name="photo" accept="image/*">
+            <x-input-error :messages="$errors->get('photo')" class="mt-2" />
+        </div>
+
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                 {{ __('Sudah punya akun?') }}
@@ -90,6 +97,7 @@
                 {{ __('Daftar') }}
             </x-primary-button>
         </div>
+
     </form>
 
     <!-- Script untuk menampilkan/menyembunyikan input Kelas berdasarkan Role -->
