@@ -46,7 +46,12 @@ class RegisteredUserController extends Controller
             'photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
         ]);
 
-        
+        // TAMBAHAN FOTO: Proses Upload
+        $photoPath = null;
+        if($request->hasFile('photo')) {
+            // Simpan file ke folder 'storage/app/public/photos'
+            $photoPath = $request->file('photo')->store('photos', 'public');
+        }
 
         // 2. Simpan Data ke Database SQL Server
         $user = User::create([
@@ -59,6 +64,9 @@ class RegisteredUserController extends Controller
             'birthdate' => $request->birthdate,
             'birthdate_location' => $request->birthdate_location,
             'school_grade' => $request->role === 'student' ? $request->school_grade : null,
+
+            // TAMBAHAN FOTO: Simpan path ke database
+            'photo' => $photoPath,
         ]);
 
         // Jika role guru, otomatis buatkan profil di tabel teachers
@@ -70,7 +78,6 @@ class RegisteredUserController extends Controller
         }
 
         event(new Registered($user));
-
         Auth::login($user);
 
         // 3. Redirect berdasarkan Role (Sama seperti sistem login)
