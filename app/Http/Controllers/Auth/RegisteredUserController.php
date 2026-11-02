@@ -41,7 +41,12 @@ class RegisteredUserController extends Controller
             'birthdate' => ['required', 'date'],
             'birthdate_location' => ['required', 'string', 'max:255'],
             'school_grade' => ['nullable', 'string', 'max:50', 'required_if:role,student'], // Wajib jika role = student
+
+            // TAMBAHAN FOTO: Validasi file gambar
+            'photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
         ]);
+
+        
 
         // 2. Simpan Data ke Database SQL Server
         $user = User::create([
