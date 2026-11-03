@@ -16,7 +16,7 @@ class SubjectController extends Controller
 
     public function create()
     {
-        return view('admin.subjects.create')
+        return view('admin.subjects.create');
     }
 
     public function store(Request $request)
