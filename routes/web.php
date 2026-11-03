@@ -26,7 +26,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
         return view('admin.dashboard');
     })->name('dashboard');
 
-    // Nanti rute CRUD Mapel, Userm dll ditaruh di sini 
+    // Nanti rute CRUD Mapel, Userm dll ditaruh di sini
+    Route::resource('subjects',  \App\Http\Controllers\Admin\SubjectController::class);
+    Route::resource('users', \App\Http\Controllers\Admin\UserController::class) 
 });
 
 // 4. Rute Khusus Guru
