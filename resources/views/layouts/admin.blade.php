@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Admin - Pocinu Bimbel</title>
+    <title>Admin - Pocinui Bimbel</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="font-sans antialiased bg-gray-100">
@@ -13,7 +13,7 @@
         <!-- Sidebar -->
         <aside class="w-64 bg-gray-800 text-white flex flex-col">
             <div class="h-16 flex items-center justify-center text-xl font-bold border-b border-gray-700">
-                Pocinu Admin
+                Pocinui Admin
             </div>
             <nav class="flex-1 px-4 py-4 space-y-2">
                 <a href="{{ route('admin.dashboard') }}" class="block px-4 py-2 rounded hover:bg-gray-700 {{ request()->routeIs('admin.dashboard') ? 'bg-gray-700' : '' }}">Dashboard</a>
