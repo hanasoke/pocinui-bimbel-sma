@@ -21,14 +21,15 @@ class SubjectController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'grade' => 'required|string|max:50',
-            'watch_hours'  => 'required|integer|min:0',
+            'watch_hours' => 'required|integer|min:0',
         ]);
 
-        Subject::create($request->all());
+        // Gunakan data yang sudah divalidasi saja 
+        Subject::create($validatedData);
 
         return redirect()->route('admin.subjects.index')->with('success', 'Mata Pelajaran berhasil ditambahkan!');
     }
@@ -40,14 +41,14 @@ class SubjectController extends Controller
 
     public function update(Request $request, Subject $subject)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'grade' => 'required|string|max:50',
             'watch_hours' => 'required|integer|min:0',
         ]);
 
-        $subject->update($request->all());
+        $subject->update($validatedData);
 
         return redirect()->route('admin.subjects.index')->with('success', 'Mata Pelajaran berhasil diperbarui!');
     }
