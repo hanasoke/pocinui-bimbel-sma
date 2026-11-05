@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Admin - Pocinui Bimbel</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    <!-- Bootstrap 5 CSS -->
-    <link rel="stylesheet" href="{{ asset('bootstrap/bootstrap.min.css') }}">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])s
 </head>
 <body class="font-sans antialiased bg-gray-100">
     <div class="flex h-screen bg-gray-100">
@@ -55,8 +52,5 @@
             </div>
         </main>
     </div>
-
-    <!-- Bootstrap 5 JS Bundle (termasuk Popper) -->
-    <script src="{{ asset('bootstrap/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>
