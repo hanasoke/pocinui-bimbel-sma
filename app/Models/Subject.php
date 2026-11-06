@@ -16,11 +16,4 @@ class Subject extends Model
         'grade',
         'watch_hours',
     ];
-
-    public function teachers() { 
-        return $this->belongsToMany(Teacher::class, 'teacher_subject');
-    }
-    public function chapters() { 
-        return $this->hasMany(SubjectChapter::class); 
-    }
 }
