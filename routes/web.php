@@ -2,10 +2,14 @@
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/admin', [AdminController::class, 'index'])
+    ->name('admin.dashboard');
 
 Route::get('/cek-koneksi', function() {
     try {
