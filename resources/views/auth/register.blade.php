@@ -32,6 +32,9 @@
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label for="name">Nama Lengkap</label>
                                 <input type="text" name="name" id="name" class="form-control" placeholder="Nama Lengkap">
+                                <div class="invalid-feedback">
+                                    Please enter a message in the textarea.
+                                </div>
                             </div>
                             <div class="col-sm-6">
                                 <label for="username">Username</label>
@@ -93,7 +96,7 @@
                             Register
                         </button>
                     </form>
-                    
+
                     <hr>
                     <div class="text-center">
                         <a class="small" href="forgot-password.html">Forgot Password?</a>
