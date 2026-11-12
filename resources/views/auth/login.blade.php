@@ -18,6 +18,13 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                             </div>
+                            
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    {{ $errors->first() }}
+                                </div>
+                            @endif
+
                             <form class="user" action="{{ route('login.authenticate') }}" method="POST">
                                 @csrf
 

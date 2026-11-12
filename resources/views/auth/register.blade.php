@@ -13,41 +13,77 @@
                     <div class="text-center">
                         <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                     </div>
-                    <form class="user">
+
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul class="mb-0">
+                                @foreach($errors->all() as $error)
+                                    <li>
+                                        {{ $error }}
+                                    </li>
+                                @endforeach 
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form class="user" action="{{ route('register.store') }}" method="POST">
+                        @csrf 
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                    placeholder="First Name">
+                                <label for="name">Nama Lengkap</label>
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Nama Lengkap" required>
                             </div>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                    placeholder="Last Name">
+                                <label for="username">Username</label>
+                                <input type="text" name="username" id="username" class="form-control"  placeholder="Username">
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                placeholder="Email Address">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Email Address">
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input type="password" class="form-control form-control-user"
-                                    id="exampleInputPassword" placeholder="Password">
+                                <label for="phone">Phone</label>
+                                <input type="number" name="phone" id="phone" class="form-control" placeholder="Nomor Telpon" required>
                             </div>
                             <div class="col-sm-6">
-                                <input type="password" class="form-control form-control-user"
-                                    id="exampleRepeatPassword" placeholder="Repeat Password">
+                                <label for="birthdate">Birthdate</label>
+                                <input type="date" name="birthdate" id="birthdate" class="form-control" placeholder="Birthdate">
                             </div>
                         </div>
-                        <a href="login.html" class="btn btn-primary btn-user btn-block">
-                            Register Account
-                        </a>
+                        <div class="form-group">
+                            <label for="school_grade">Tingkat Sekolah</label>
+                            <select name="school_grade" id="school_grade" class="form-control" placeholder="School Grade">
+                                <option value="">Pilih Tingkat</option>
+                                <option value="SD">SD</option>
+                                <option value="SMP">SMP</option>
+                                <option value="SMA">SMA</option>
+                                <option value="Mahasiswa">Mahasiswa</option>
+                            </select>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control"
+                                    id="password" placeholder="Password" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="comfirm_password">Konfirmasi Password</label>
+                                <input type="password" class="form-control"
+                                    id="comfirm_password" placeholder="Password Confirmation" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                            Register
+                        </button>
                     </form>
                     <hr>
                     <div class="text-center">
                         <a class="small" href="forgot-password.html">Forgot Password?</a>
                     </div>
                     <div class="text-center">
-                        <a class="small" href="login.html">Already have an account? Login!</a>
+                        <a class="small" href="{{ route('login') }}">Already have an account? Login!</a>
                     </div>
                 </div>
             </div>
