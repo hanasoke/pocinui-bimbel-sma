@@ -31,7 +31,7 @@
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label for="name">Nama Lengkap</label>
-                                <input type="text" name="name" id="name" class="form-control" placeholder="Nama Lengkap" required>
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Nama Lengkap">
                             </div>
                             <div class="col-sm-6">
                                 <label for="username">Username</label>
@@ -45,7 +45,7 @@
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label for="phone">Phone</label>
-                                <input type="number" name="phone" id="phone" class="form-control" placeholder="Nomor Telpon" required>
+                                <input type="number" name="phone" id="phone" class="form-control" placeholder="Nomor Telpon">
                             </div>
                             <div class="col-sm-6">
                                 <label for="birthdate">Birthdate</label>
@@ -66,18 +66,34 @@
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control"
-                                    id="password" placeholder="Password" required>
+                                    id="password" placeholder="Password">
                             </div>
                             <div class="col-sm-6">
-                                <label for="comfirm_password">Konfirmasi Password</label>
-                                <input type="password" class="form-control"
-                                    id="comfirm_password" placeholder="Password Confirmation" required>
+                                <label for="confirm_password">Konfirmasi Password</label>
+                                <input type="password" class="form-control" id="confirm_password" placeholder="Password Confirmation">
                             </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label for="school_grade">Role</label>
+                                <select name="school_grade" id="school_grade" class="form-control" placeholder="School Grade">
+                                    <option value="">Pilih Role</option>
+                                    <option value="SD">Admin</option>
+                                    <option value="SMP">Student</option>
+                                    <option value="SMA">Teacher</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="photo">Photo</label>
+                                <input type="file" class="form-control" id="photo" placeholder="Input Photo Profile">
+                            </div>
+                            
                         </div>
                         <button type="submit" class="btn btn-primary btn-user btn-block">
                             Register
                         </button>
                     </form>
+                    
                     <hr>
                     <div class="text-center">
                         <a class="small" href="forgot-password.html">Forgot Password?</a>
