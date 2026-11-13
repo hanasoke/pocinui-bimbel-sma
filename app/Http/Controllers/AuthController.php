@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -18,9 +20,18 @@ class AuthController extends Controller
     // Proses register 
     public function storeRegister(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'username' => 'required|string|max:100|unique:users',
+        $validated = $request->validate([
+            
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+            ],
+            'username' => [
+                'required',
+                'string',
+                'max:100',
+            ],
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed',
             'phone' => 'nullable|string|max:20',
