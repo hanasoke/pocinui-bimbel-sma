@@ -104,7 +104,7 @@ return [
             'url' => env('DB_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '1433'),
-            'database' => env('DB_DATABASE', 'testSqlServer'),
+            'database' => env('DB_DATABASE', 'POCINUI_BIMBEL_SMA'),
             'username' => env('DB_USERNAME', 'hanasbp'),
             'password' => env('DB_PASSWORD', 'hanasbp'),
             'charset' => env('DB_CHARSET', 'utf8'),
