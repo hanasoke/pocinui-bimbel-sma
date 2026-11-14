@@ -117,14 +117,34 @@ class AuthController extends Controller
         }
 
         // Membuat akun baru
+        $user = User::create([
 
+            'name' => $validated['name'],
+            'username' => $validated['username'],
+            'email' => $validated['email'],
 
+            // Password di-hash oleh casts pada model User 
+            'password' => $validated['password'],
 
+            'phone' => $validated['phone'] ?? null,
+            'birthdate' => $validated['birthdate'] ?? null,
+            'birthdate_location' => $validated['birthdate_location'] ?? null,
+            'school_grade' => $validated['school_grade'] ?? null,
+
+            'role' => 'user',
+
+            'photo' => $photoPath,
+
+        ]);
+
+        // Login otomatis setelah register
         Auth::login($user);
 
         $request->session()->regenerate();
 
-        return redirect()->route('dashboard');
+        return redirect()
+                ->route('dashboard')
+                ->with('success', 'Registrasi berhasil. selamat datang!');
     }
 
     // Menampilkan halaman login
