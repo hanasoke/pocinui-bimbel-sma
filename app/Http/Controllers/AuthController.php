@@ -156,30 +156,45 @@ class AuthController extends Controller
     // Proses login
     public function authenticate(Request $request)
     {
-        $request->validate([
-            'login' => 'required|string',
-            'password' => 'required|string',
+        $credentials = $request->validate([
+            'login' => [
+                'required',
+                'string',
+            ],
+
+            'password' => [
+                'required',
+                'string',
+            ],
         ]);
 
-        $field = filter_var($request->login, FILTER_VALIDATE_EMAIL)
-            ? 'email'
-            : 'username';
+        // Menentukan login menggunakan email atau username
+        $field = filter_var(
+            $credentials['login'], 
+            FILTER_VALIDATE_EMAIL
+        ) ? 'email' : 'username';
 
-        $credentials = [
-            $field => $request->login,
-            'password' => $request->password,
+        $loginData = [
+            $field => $credentials['login'],
+            'password' => $credentials['password'],
         ];
 
-        if (Auth::attempt($credentials)) {
+        // Proses authentication
+        if (Auth::attempt(
+            $loginData,
+            $request->boolean('remember')
+        )) {
 
             $request->session()->regenerate();
 
-            return redirect()->route('dashboard');
+            return redirect()
+                ->intended(route('dashboard'));
         }
 
-        return back()->withErrors([
-            'login' => 'Username/email atau password salah.',
-        ])->onlyInput('login');
+        return back()
+            ->withErrors([
+                'login' => 'Username/email atau password salah.',
+            ])->onlyInput('login');
     }
 
     // Logout
@@ -188,8 +203,11 @@ class AuthController extends Controller
         Auth::logout();
 
         $request->session()->invalidate();
+
         $request->session()->regenerateToken();
 
-        return redirect()->route('login');
+        return redirect()
+            ->route('login')
+            ->with('success', 'Kamu berhasil logout.');
     }
 }
