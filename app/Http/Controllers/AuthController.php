@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -94,18 +93,6 @@ class AuthController extends Controller
             'photo.image' => 'File harus berupa gambar.',
             'photo.mimes' => 'Foto harus berformat JPG, JPEG, atau PNG.',
             'photo.max' => 'Ukuran foto maksimal 2 MB.',
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'phone' => $request->phone,
-            'birthdate' => $request->birthdate,
-            'birthdate_location' => $request->birthdate_location,
-            'school_grade' => $request->school_grade,
-            'role' => 'user',
         ]);
 
         // Upload foto 
